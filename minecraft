@@ -1,0 +1,18 @@
+from mcpi.minecraft import Minecraft
+from mcpi import block
+import picamera
+from os import system
+from time import sleep
+camera = picamera.PiCamera()
+mc = Minecraft.create()
+while True:				
+	x, y, z = mc.player.getTilePos()
+	mc.postToChat("x: " + str(x) + "y: " + str(y) + "z: " + str(z)) 
+	mc.setBlock(x, y, z, 38)
+	if x==8 and y==0 and z==(-30):
+		camera.start_preview()
+		camera.capture('/home/pi/share/Pythoncamera/Pictures/Minecraftpicture.jpg') 
+		camera.stop_preview()
+		sleep(1)
+	
+	
